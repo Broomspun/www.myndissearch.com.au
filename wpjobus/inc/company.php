@@ -29,9 +29,41 @@
 		); 		
 
 		register_post_type( 'company', $args );						  
-	} 
+	}
+
+function areas_register_taxonomies() {
+    global $wpdb;
+
+    // Type of Product/Service taxonomy
+    $labels = array(
+        'name'              => __('All Areas','themesdojo'),
+        'singular_name'     => __('Name of Area','themesdojo'),
+        'search_items'      => __('Search Areas','themesdojo'),
+        'all_items'         => __('All Areas','themesdojo'),
+        'parent_item'       => __('Parent Area','themesdojo'),
+        'parent_item_colon' => __('Parent Area:','themesdojo'),
+        'edit_item'         => __('Edit Area','themesdojo'),
+        'update_item'       => __('Update Area','themesdojo'),
+        'add_new_item'      => __('Add New Area','themesdojo'),
+        'new_item_name'     => __('New Area','themesdojo'),
+        'menu_name'         => __('All Areas','themesdojo'),
+    );
+
+    $args = array(
+        'hierarchical'      => true,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => true,
+    );
+
+    register_taxonomy( 'area', array( 'company' ), $args );
+
+}
 									  
 	add_action('init', 'post_type_company');
+	add_action('init', 'areas_register_taxonomies');
 
 
 ?>
