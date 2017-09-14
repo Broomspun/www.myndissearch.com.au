@@ -25,16 +25,16 @@
 	    	'hierarchical' => false,
 	    	'menu_position' => null,
 	    	'supports' => array('thumbnail'),
-	    	'menu_icon' => 'dashicons-menu'
+	    	'menu_icon' => 'dashicons-menu',
+            'taxonomies' => array( 'area' )
 		); 		
 
-		register_post_type( 'company', $args );						  
+		register_post_type( 'company', $args );
+        flush_rewrite_rules();
 	}
 
 function areas_register_taxonomies() {
-    global $wpdb;
 
-    // Type of Product/Service taxonomy
     $labels = array(
         'name'              => __('All Areas','themesdojo'),
         'singular_name'     => __('Name of Area','themesdojo'),
