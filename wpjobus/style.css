@@ -1,0 +1,119 @@
+/*------------------------------------*\
+	Theme Name: WPJobus - Job Directory WordPress Theme
+	Date: October 2014 
+	Description: Job Directory WordPress Theme. 
+	Version: 2.0.15
+	Author: Alex Gurghis 
+	Author URI: http://alexgurghis.com 
+	License URI: http://themeforest.net/licenses/regular_extended
+	License: Commercial
+	Theme URI: 
+	Tags: creative, bold, premium, theme, wordpress, responsive, flat, clean, job, resume
+/*------------------------------------*/
+
+
+#header-cover-image {
+  background: #000 none repeat scroll 0 0;
+  float: left;
+  height: 325px !important;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  z-index: -1;
+}
+
+
+.rating-item.mr {
+  float: left;
+  margin-left: 10px;
+}
+
+.mr-error {
+  color: #ec6464;
+  float: left;
+  margin-left: 10px;
+  font-weight: 500;
+  margin-top: -10px;
+}
+
+.save-rating {
+  background-color: #2980b9 !important;
+  border-radius: 2px !important;
+  color: #fff !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+  float: right !important;
+  font-size: 10px !important;
+  font-weight: bold !important;
+  margin-left: 20px !important;
+  margin-top:5px !important;
+  text-transform: uppercase !important;
+  transition: all 0.2s ease 0s !important;
+  width: auto !important;
+}
+
+
+p.mr label.description {
+  color: #9cd092 !important;
+  font-size: 15px !important;
+  margin-right: 10px;
+  font-weight:bold;
+
+}
+
+.rating-result{
+	margin-left:10px;
+}
+
+.ptp-two-col{
+	float:left;
+}
+
+
+.map-show-up{
+	margin-top: -170px !important;
+}
+
+select{
+	text-transform: capitalize;
+}
+
+.wpb_wrapper li {
+  list-style: inside none disc;
+  margin: 10px;
+}
+
+.provider-package {
+  font-size: 14px;
+  font-weight: normal;
+  padding: 10px 0;
+}
+
+.provider-current-package{
+	font-size: 18px;
+	font-weight: normal;
+	padding: 10px 2px;
+	color:#2980b9;
+}
+
+.provider-upgrade-package{
+	font-size: 18px;
+	font-weight: bold;
+	padding: 10px;
+	color:red !important;
+}
+
+.my-account-payment-history{
+	color: #2980b9;
+    float: left;
+    font-family: "Montserrat",sans-serif;
+    font-size: 16px;
+    margin-right: 20px;
+	margin-top:-20px !important;
+}
+
+.new-posts-menu ul li ul.sub-menu{
+	width:185px !important;
+}
+
+
