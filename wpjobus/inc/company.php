@@ -123,4 +123,32 @@ add_action( 'edited_area', 'save_taxonomy_custom_fields', 10, 2 );
 // Create custom field called postcodes on the "area" taxonomy, using callback function
 add_action( 'area_add_form_fields', 'create_taxonomy_custom_fields', 10, 2 );
 add_action( 'create_area', 'save_taxonomy_custom_fields', 10, 2 );
+
+// Create custom column called postcodes
+function area_custom_taxonomy_columns( $columns )
+{
+    $new_columns = array();
+    $new_columns['name'] = $columns['name'];
+    $new_columns['postcodes'] = __('Postcodes');
+    $new_columns['description'] = $columns['description'];
+    $new_columns['slug'] = $columns['slug'];
+    $new_columns['posts'] = $columns['posts'];
+
+    return $new_columns;
+}
+add_filter('manage_edit-area_columns' , 'area_custom_taxonomy_columns');
+
+//Add content to the column postcodes
+function add_area_column_content($content,$column_name,$term_id){
+    $term_meta = get_option("taxonomy_term_$term_id"); // Do the check
+    switch ($column_name) {
+        case 'postcodes':
+            $content = $term_meta['postcodes'];
+            break;
+        default:
+            break;
+    }
+    return $content;
+}
+add_filter('manage_area_custom_column', 'add_area_column_content',10,3);
 ?>
