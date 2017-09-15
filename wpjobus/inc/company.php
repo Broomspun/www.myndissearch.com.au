@@ -78,8 +78,7 @@ function area_taxonomy_custom_fields($tag)
             <label for="postcodes"><?php _e('Postcode Lists(separated comma and dashline)'); ?></label>
         </th>
         <td>
-            <input type="text" name="term_meta[postcodes]" id="term_meta[postcodes]" size="25" style="width:60%;"
-                   value="<?php echo $term_meta['postcodes'] ? $term_meta['postcodes'] : ''; ?>"><br/>
+            <textarea name="term_meta[postcodes]" id="term_meta[postcodes]" rows="5" cols="50" style="width:95%;"><?php echo $term_meta['postcodes'] ? $term_meta['postcodes'] : ''; ?></textarea><br/>
             <span class="description"><?php _e('Postcodes in this area'); ?></span>
         </td>
     </tr>
@@ -106,8 +105,8 @@ function create_taxonomy_custom_fields(){
 
     <div class="form-field term-postcodes" style="margin-bottom: 20px;">
             <label for="postcodes"><?php _e('Postcode Lists(separated comma and dashline)'); ?></label>
-            <input type="text" name="term_meta[postcodes]" id="term_meta[postcodes]" size="50" style="width:95%;"
-                   value=""><br/>
+            <textarea name="term_meta[postcodes]" id="term_meta[postcodes]" cols="40" rows="6" style="width:95%;">
+            </textarea><br/>
             <span class="description"><?php _e('Postcodes in this area'); ?></span>
     </div>
 
