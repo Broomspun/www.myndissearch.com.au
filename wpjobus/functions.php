@@ -170,16 +170,28 @@ function formtoshowmy(){
 						            				/*echo "<pre>";
 						            				print_r($redux_demo['resume-locations']);
 						            				echo "</pre>";*/
+                                                    $areas = get_terms(
+                                                        array(
+                                                            'taxonomy' => 'area',
+                                                            'hide_empty' => false,
+                                                        )
+                                                    );
+
 						            				?>
 							            			<select class="chosen" name="company_location" id="job_location" style="width: 100%; margin-bottom: 0;">
-							            				<option value='' ><?php _e( 'Any Suburb', 'themesdojo' ); ?></option>
-														<?php 
+							            				<option value='' ><?php _e( 'Any Region', 'themesdojo' ); ?></option>
+														<?php
+                                                       foreach ($areas as $area){
+                                                        ?>
+                                                           <option value='<?php echo $area->term_id; ?>'><?php echo $area->name; ?></option>
+                                                       <?php
+                                                       }
 
-														for ($i = 0; $i < count($redux_demo['resume-locations']); $i++) {
+//														for ($i = 0; $i < count($redux_demo['resume-locations']); $i++) {
 							?>
-							<option value='<?php echo $redux_demo['resume-locations'][$i]; ?>'><?php echo $redux_demo['resume-locations'][$i]; ?></option>
+<!--							<option value='--><?php //echo $redux_demo['resume-locations'][$i]; ?><!--'>--><?php //echo $redux_demo['resume-locations'][$i]; ?><!--</option>-->
 							<?php 
-								}
+//								}
 													
 														global $wpdb;
 														/*$suburbdata = $wpdb->get_results("SELECT * FROM suburb");
@@ -192,12 +204,7 @@ function formtoshowmy(){
 															///for ($i = 0; $i < count($redux_demo['resume-locations']); $i++) {
 														?>
 														<?php /* <option value='<?php echo $redux_demo['resume-locations'][$i]; ?>' ><?php echo $redux_demo['resume-locations'][$i]; ?></option> */ ?>
-														<?php 
-														//	}
-														?>
-															
-															//for ($i = 0; $i < count($redux_demo['resume-locations']); $i++) {
-														?>
+
 														<?php /*<option value='<?php echo $redux_demo['resume-locations'][$i]; ?>' ><?php echo $redux_demo['resume-locations'][$i]; ?></option> */ ?>
 														<?php 
 															///}
