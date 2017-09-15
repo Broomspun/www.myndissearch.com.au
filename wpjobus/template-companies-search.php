@@ -38,17 +38,20 @@ include (get_template_directory() . "/part-sliders.php");
         								'order' => 'asc',
 										
 								);
+                            if($_REQUEST['company_location']!=''){
+                                $args['tax_query'] = array(
+                                        array(
+                                            'taxonomy'  => 'area',
+                                            'field'     => 'term_id',
+                                            'terms'     => $_REQUEST['company_location'],
+                                        )
+                                );
+                            }
+
 							$args['meta_query'] =array();
 							$args['meta_query']['relation'] = 'AND';
 							if($_REQUEST['keyword']!=''){
 								$args['s'] = $_REQUEST['keyword'];
-							}
-							if($_REQUEST['company_location']!=''){
-								$args['meta_query'][] = array(
-																'key'     => 'company_location',
-																'value'   => $_REQUEST['company_location'],
-																'compare' => '=',
-															);
 							}
 							if($_REQUEST['company_industry']!=''){
 								$args['meta_query'][] = array(
