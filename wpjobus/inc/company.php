@@ -65,5 +65,62 @@ function areas_register_taxonomies() {
 	add_action('init', 'post_type_company');
 	add_action('init', 'areas_register_taxonomies');
 
+// A callback function to add a custom field to "area" taxonomy
+function area_taxonomy_custom_fields($tag)
+{
+    // Check for existing taxonomy meta for the term you're editing
+    $t_id = $tag->term_id; // Get the ID of the term you're editing
+    $term_meta = get_option("taxonomy_term_$t_id"); // Do the check
+    ?>
 
+    <tr class="form-field">
+        <th scope="row" valign="top">
+            <label for="postcodes"><?php _e('Postcode Lists(separated comma and dashline)'); ?></label>
+        </th>
+        <td>
+            <input type="text" name="term_meta[postcodes]" id="term_meta[postcodes]" size="25" style="width:60%;"
+                   value="<?php echo $term_meta['postcodes'] ? $term_meta['postcodes'] : ''; ?>"><br/>
+            <span class="description"><?php _e('Postcodes in this area'); ?></span>
+        </td>
+    </tr>
+
+    <?php
+}
+// A callback function to save our extra taxonomy field(s)
+function save_taxonomy_custom_fields( $term_id ) {
+    if ( isset( $_POST['term_meta'] ) ) {
+        $t_id = $term_id;
+        $term_meta = get_option( "taxonomy_term_$t_id" );
+        $cat_keys = array_keys( $_POST['term_meta'] );
+        foreach ( $cat_keys as $key ){
+            if ( isset( $_POST['term_meta'][$key] ) ){
+                $term_meta[$key] = $_POST['term_meta'][$key];
+            }
+        }
+        //save the option array
+        update_option( "taxonomy_term_$t_id", $term_meta );
+    }
+}
+function create_taxonomy_custom_fields(){
+    ?>
+
+    <div class="form-field term-postcodes" style="margin-bottom: 20px;">
+            <label for="postcodes"><?php _e('Postcode Lists(separated comma and dashline)'); ?></label>
+            <input type="text" name="term_meta[postcodes]" id="term_meta[postcodes]" size="50" style="width:95%;"
+                   value=""><br/>
+            <span class="description"><?php _e('Postcodes in this area'); ?></span>
+    </div>
+
+    <?php
+}
+
+// Add the fields to the "area" taxonomy, using callback function
+add_action( 'area_edit_form_fields', 'area_taxonomy_custom_fields', 10, 2 );
+
+// Save the changes made on the "area" taxonomy, using callback function
+add_action( 'edited_area', 'save_taxonomy_custom_fields', 10, 2 );
+
+// Create custom field called postcodes on the "area" taxonomy, using callback function
+add_action( 'area_add_form_fields', 'create_taxonomy_custom_fields', 10, 2 );
+add_action( 'create_area', 'save_taxonomy_custom_fields', 10, 2 );
 ?>
